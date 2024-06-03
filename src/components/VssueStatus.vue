@@ -24,7 +24,7 @@
 import { inject, computed } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { Vssue } from '~/types/vssue'
-import TransitionFade from './TransitionFade.vue';
+import TransitionFade from './TransitionFade';
 import VssueIcon from './VssueIcon';
 
 const { t } = useI18n()

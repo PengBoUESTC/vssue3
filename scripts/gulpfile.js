@@ -1,7 +1,4 @@
-const path = require('path');
 const gulp = require('gulp');
-const rollup = require('rollup');
-const { rimraf } = require('rimraf');
 const through = require('through2');
 const stylus = require('gulp-stylus');
 const postcss = require('gulp-postcss');
@@ -10,34 +7,7 @@ const concat = require('gulp-concat');
 const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 
-const rollupConfig = require('./rollup-config');
-
-const { pathSrc, pathDist, banner, arrayToChunks } = require('./util');
-
-gulp.task(
-  'clean',
-  async () =>
-    await rimraf(pathDist())
-);
-
-function makeRollupTask(config) {
-  async function rollupTask() {
-    const bundle = await rollup.rollup(config);
-    return bundle.write(config.output);
-  }
-
-  rollupTask.displayName = `rollup:${path.basename(config.output.file)}`;
-
-  return rollupTask;
-}
-
-const rollupTasks = rollupConfig.map(config => makeRollupTask(config));
-const rollupTasksChunks = arrayToChunks(rollupTasks, 4);
-
-gulp.task(
-  'rollup',
-  gulp.series(...rollupTasksChunks.map(item => gulp.parallel(...item)))
-);
+const { pathSrc, pathDist, banner } = require('./util');
 
 function makeStyleTask(input, output) {
   async function styleTask() {
@@ -77,4 +47,4 @@ gulp.task(
   )
 );
 
-gulp.task('default', gulp.series('clean', gulp.parallel('rollup', 'style')));
+gulp.task('default', gulp.series('style'));

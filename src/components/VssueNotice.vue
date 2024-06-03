@@ -23,7 +23,7 @@
 <script lang="ts" setup>
 import type { Vssue } from '~/types/vssue'
 import { inject, watch, reactive, onBeforeMount, onBeforeUnmount } from 'vue'
-import { on, off } from '@/event'
+import { on, off } from '../event'
 import TransitionFade from './TransitionFade';
 
 const vssue = inject<Vssue.Store>('vssue')!

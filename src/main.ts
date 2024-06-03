@@ -1,5 +1,6 @@
 import type { App, Plugin, Component } from 'vue'
 import { Vssue } from '~/types/vssue';
+import i18n from './i18n/index' 
 import VssueComponent from './Vssue.vue';
 
 const VssuePlugin: Vssue.Plugin & Plugin = {
@@ -14,39 +15,8 @@ const VssuePlugin: Vssue.Plugin & Plugin = {
       return false;
     }
     this.installed = true;
-
-    app.component('Vssue', {
-      functional: true,
-
-      props: {
-        title: {
-          type: String,
-          required: false,
-          default: undefined,
-        },
-        issueId: {
-          type: [Number, String],
-          required: false,
-          default: undefined,
-        },
-        options: {
-          type: Object,
-          required: false,
-          default: undefined,
-        },
-      },
-
-      render(h, { data, props }) {
-        return h(VssueComponent, {
-          ...data,
-          props: {
-            title: props.title,
-            issueId: props.issueId,
-            options: Object.assign({}, options, props.options),
-          },
-        });
-      },
-    });
+    app.use(i18n)
+    app.component('Vssue', VssueComponent);
   },
 
   VssueComponent: VssueComponent as unknown as Component,

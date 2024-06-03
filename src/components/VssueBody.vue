@@ -25,7 +25,7 @@
 import { inject } from 'vue'
 import type { Vssue } from '~/types/vssue'
 
-import TransitionFade from './TransitionFade.vue';
+import TransitionFade from './TransitionFade';
 import VssueComments from './VssueComments.vue';
 import VssueNewComment from './VssueNewComment.vue';
 import VssueNotice from './VssueNotice.vue';

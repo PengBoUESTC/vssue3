@@ -1,11 +1,11 @@
 import { ref, watch } from 'vue'
+import { getCleanURL } from '@vssue/utils';
 import type { Vssue } from '~/types/vssue';
 import type { VssueAPI } from '~/types/api';
-import { getCleanURL } from '@vssue/utils';
 import i18n, { setI18nLocale, getDefaultLocale } from './i18n';
 import { LOCALE_ENUM } from './i18n/constants'
 
-import { eimt } from '@/event'
+import { eimt } from './event'
 
 
 class VssueStore {
@@ -17,9 +17,9 @@ class VssueStore {
 
     watch([() => this.query.page, () => this.query.sort], this.getComments)
   }
-  get version(): string {
-    return process.env.VUE_APP_VERSION as string;
-  }
+  // get version(): string {
+  //   return process.env.VUE_APP_VERSION as string;
+  // }
   title: string | ((options: Vssue.Options) => string) = options =>
     `${options.prefix}${document.title}`;
 

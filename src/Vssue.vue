@@ -19,7 +19,6 @@ const props = defineProps<{
   title: string | ((opts?: VssueNamespace.Options) => string) | null
   issueId: string | number | null;
   options: Partial<VssueNamespace.Options>;
-
 }>()
 const vssue = reactive(new VssueStore())
 /**

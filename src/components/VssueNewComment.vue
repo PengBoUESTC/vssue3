@@ -81,11 +81,12 @@ import { ref, inject, computed, onBeforeMount, onBeforeUnmount } from 'vue'
 import { useI18n } from 'vue-i18n'
 import type { VssueAPI } from '~/types/api'
 import type { Vssue } from '~/types/vssue'
-import { on, off } from '@/event'
-import VssueButton from './VssueButton.vue';
+import { on, off } from '../event'
+import VssueButton from './VssueButton';
 import VssueIcon from './VssueIcon';
 
 const { t } = useI18n()
+
 const vssue = inject<Vssue.Store>('vssue')!
 
 const input = ref<HTMLInputElement>()
